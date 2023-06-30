@@ -44,9 +44,18 @@ void menu()
 
 }
 
-void enterGrades() 
+// grades is left empty to allow the array to have a variable number of rows(students)
+// Max grades indicated the number of coloumns (grades)
+// numstudents specifies the size of the first array (grades)
+void enterGrades(int grades[][MAX_GRADES], int numStudents) 
 {
+    for (int i = 0; i < numStudents; i++){
+        cout << "Enter grades for student " << (i + 1) << ": ";
 
+        for (int j = 0; j < MAX_GRADES; j++){
+            cin >> grades[i][j];
+        }
+    }
 }
 
 
@@ -110,9 +119,22 @@ void generateReport(string names[], int scores[][MAX_GRADES], int MAX_GRADES, in
     outFile.close();
 }
 
-void saveToFile()
+void saveToFile(string names[], int scores[][MAX_GRADES], int MAX_GRADES, int averageStudentScores[])
 {
+    ofstream myFile("Student Names");
+    if (!outputFile) {
+        cerr << "Error opening file.\n";
+        return;
+    }
 
+    myFile << "Student Names:\n" << string names[];
+    myFile << "Grade" << int MAX_GRADES[i] << endl;
+    myFile << "Average grade" << averageStudentScores[i] << endl;
+   
+
+    myFile.close();
+    
+}
 }
 
 
@@ -126,6 +148,17 @@ int main()
     char commandMenu = 'm';
     char commandExit = 'x';
     char userOption;
+
+
+
+
+
+
+
+
+
+
+
     bool status;
 
     string names[MAX_STUDENTS]; // array to store names
@@ -133,10 +166,18 @@ int main()
     ifstream myFile("Student Names.txt"); // open file 
 
 
+=======
+    int grades[MAX_STUDENTS][MAX_GRADES]; // declares the 2d array 
+    int numStudents; // stores grades entered in the varibale
+>>>>>>> 11a43f194298c2ea6a114e50bac7bc97e7152370
 
     // Call Functions Welcome and Menu
     welcome();
     menu();
+
+
+
+
     status = readfromFile(myFile, names);
 
     userOption = 't';
@@ -177,4 +218,16 @@ int main()
 
 }
 
+// cout << "Enter the number of students: ";
+// cin >> numStudents;
+// enterGrades(grades, numStudents);
 
+// This function displays entered grades
+// cout << "Entered grades: " << endl;
+    // for (int i = 0; i < numStudents; i++)
+        // cout << "Student " << (i + 1) << ": ";
+        // for (int j = 0; j < MAX_GRADES; j++) {
+            // cout << grades[i][j] << " ";  
+        //} 
+        // cout << std::endl;
+    //}
