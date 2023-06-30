@@ -8,6 +8,9 @@
 
 using namespace std;
 
+const int MAX_STUDENTS = 10;
+const int MAX_GRADES = 5;
+
 void welcome()
 {
     
@@ -58,9 +61,35 @@ bool readfromFile()
     return true;
 }
 
-void generateReport()
+void generateReport(string names[], int scores[][MAX_GRADES], int MAX_GRADES, int averageStudentScores[])
 {
+    int periodsOne = 15;
+    int periodsTwo = 10;
+    int PeriodsThree = 8;
 
+    ofstream outFile;
+
+    cout << setfill('.');
+
+    outFile.open("scores.dat");
+
+    for (int i = 0; i < MAX_STUDENTS; i++) {
+        cout << left << setw(periodsOne) << names[i];
+        outFile << left << setw(periodsOne) << names[i];
+
+        for (int j = 0; j < MAX_GRADES; j++) {
+            cout << right << setw(periodsTwo) << scores[i][j];
+            outFile << right << setw(periodsTwo) << scores[i][j];
+
+        }
+        for (int x = 0; x < 1; x++) {
+            cout << right << setw(PeriodsThree) << averageStudentScores[i] << " ";
+            outFile << right << setw(PeriodsThree) << averageStudentScores[i] << " ";
+        }
+        cout << endl;
+        outFile << endl;
+    }
+    outFile.close();
 }
 
 void saveToFile()
@@ -94,35 +123,27 @@ int main()
         cout << "Please enter an operation to perform:";
         cin >> userOption;
 
-        if (userOption == commandGetCount) //call GetCountofTeam function
+        if (userOption == commandEnterGrades) //call GetCountofTeam function
         {
             //GetCountOfTeam();
         }
-        else if (userOption == commandGetMostWinning) //call GetMostWinningTeam function
+        else if (userOption == commandCalculateAverage) //call GetMostWinningTeam function
         {
             //GetMostWinningTeam();
         }
-        else if (userOption == commandGetTeamDate) // call GetTeamForDate function 
+        else if (userOption == commandGenerateReport) // call GetTeamForDate function 
         {
             //GetTeamForDate();
         }
-        else if (userOption == commandConvertCase) // call ConvertTeamNameCase function
+        else if (userOption == commandSaveToFile) // call ConvertTeamNameCase function
         {
-            cout << "Please enter the case to change ('u' = upper and 'l' = lower):";
-            cin >> userOption;
+            //saveToFile()
 
-            if (userOption == upperChoice) { //changes the value of to_upper depending on the customers option
-                to_upper = true;
-            }
-            else if (userOption == lowerChoice)
-            {
-                to_upper = false;
-            }
-
-            ConvertTeamNameCase(to_upper, teamNames, SIZE_DATA);
         }
-
-        else if (customerOption == commandExit) {
+        else if (userOption == commandMenu) {
+            menu();
+        } 
+        else if (userOption == commandExit) {
             cout << "Good Bye." << endl;
         }
     }
