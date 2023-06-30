@@ -119,7 +119,7 @@ void generateReport(string names[], int scores[][MAX_GRADES], int MAX_GRADES, in
     outFile.close();
 }
 
-void saveToFile(string names[], int scores[][MAX_GRADES], int MAX_GRADES, int averageStudentScores[])
+void saveToFile(string names[], int grades[][MAX_GRADES], int MAX_GRADES, int averageStudentScores[])
 {
     ofstream myFile("Student Names");
     if (!outputFile) {
@@ -135,7 +135,7 @@ void saveToFile(string names[], int scores[][MAX_GRADES], int MAX_GRADES, int av
     myFile.close();
     
 }
-}
+
 
 
 int main()
@@ -151,15 +151,6 @@ int main()
     int grades[MAX_STUDENTS][MAX_GRADES]; // declares the 2d array 
     int numStudents; // stores grades entered in the varibale
 
-
-
-
-
-
-
-
-
-
     bool status;
 
     string names[MAX_STUDENTS]; // array to store names
@@ -167,10 +158,9 @@ int main()
     ifstream myFile("Student Names.txt"); // open file 
 
 
-=======
+
     int grades[MAX_STUDENTS][MAX_GRADES]; // declares the 2d array 
     int numStudents; // stores grades entered in the varibale
->>>>>>> 11a43f194298c2ea6a114e50bac7bc97e7152370
 
     // Call Functions Welcome and Menu
     welcome();
