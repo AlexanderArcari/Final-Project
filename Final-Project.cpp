@@ -55,10 +55,21 @@ void calculateAverages()
 
 }
 
-bool readfromFile() 
-{
+void readfromFile() {
 
-    return true;
+
+    std::ifstream myFile; myFile.open("Student Names.txt");
+    if (myFile.is_open()){
+
+    char mystring;
+    while (myFile) {
+        mystring = myFile.get();
+        std::cout << mystring;
+
+       
+    }
+    return;
+}
 }
 
 void generateReport(string names[], int scores[][MAX_GRADES], int MAX_GRADES, int averageStudentScores[])
