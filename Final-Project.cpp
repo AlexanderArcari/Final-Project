@@ -47,6 +47,7 @@ void menu()
 // grades is left empty to allow the array to have a variable number of rows(students)
 // Max grades indicated the number of coloumns (grades)
 // numstudents specifies the size of the first array (grades)
+
 void enterGrades(int grades[][MAX_GRADES], int numStudents) 
 {
     for (int i = 0; i < numStudents; i++){
@@ -59,9 +60,24 @@ void enterGrades(int grades[][MAX_GRADES], int numStudents)
 }
 
 
-void calculateAverages() 
-{ //this can also be an int
+void calculateAverages(string names[], int scores[][MAX_GRADES], int SCORES, int averageScores[])
+{
 
+    int row;
+    int col;
+    int sum;
+
+    for (row = 0; row < MAX_STUDENTS; row++)
+    {
+        sum = 0;
+        for (col = 0; col < MAX_GRADES; col++)
+        {
+            sum = sum + scores[row][col];
+
+        }
+        averageScores[row] = sum / MAX_GRADES;
+
+    }
 }
 
 bool readfromFile(ifstream& fileName, string names[])
@@ -83,6 +99,9 @@ bool readfromFile(ifstream& fileName, string names[])
             
         }
 
+        for (int i = 0; i < MAX_STUDENTS; i++) {
+            cout << names[i] << endl;
+        }
         return success;
     }
 }
@@ -119,22 +138,23 @@ void generateReport(string names[], int scores[][MAX_GRADES], int MAX_GRADES, in
     outFile.close();
 }
 
-void saveToFile(string names[], int grades[][MAX_GRADES], int MAX_GRADES, int averageStudentScores[])
-{
-    ofstream myFile("Student Names");
-    if (!outputFile) {
-        cerr << "Error opening file.\n";
-        return;
-    }
+//void saveToFile(string names[], int grades[][MAX_GRADES], int MAX_GRADES, int averageStudentScores[])
+//{
+  //  ofstream myFile("Student Grade Report.txt");
 
-    myFile << "Student Names:\n" << string names[];
-    myFile << "Grade" << int MAX_GRADES[i] << endl;
-    myFile << "Average grade" << averageStudentScores[i] << endl;
+    //if (!myFile) {
+      //  cerr << "Error opening file.\n";
+       // return;
+    //}
+
+    //myFile << "Student Names:\n" << names[];
+    //myFile << "Grade" << grades[i] << endl;
+    //myFile << "Average grade" << averageStudentScores[i] << endl;
    
 
-    myFile.close();
+  //  myFile.close();
     
-}
+//}
 
 
 
@@ -159,16 +179,12 @@ int main()
 
 
 
-    int grades[MAX_STUDENTS][MAX_GRADES]; // declares the 2d array 
-    int numStudents; // stores grades entered in the varibale
+    
+
 
     // Call Functions Welcome and Menu
     welcome();
     menu();
-
-
-
-
     status = readfromFile(myFile, names);
 
     userOption = 't';
