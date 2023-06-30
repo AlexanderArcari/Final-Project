@@ -103,9 +103,22 @@ void generateReport(string names[], int scores[][MAX_GRADES], int MAX_GRADES, in
     outFile.close();
 }
 
-void saveToFile()
+void saveToFile(string names[], int scores[][MAX_GRADES], int MAX_GRADES, int averageStudentScores[])
 {
+    ofstream myFile("Student Names");
+    if (!outputFile) {
+        cerr << "Error opening file.\n";
+        return;
+    }
 
+    myFile << "Student Names:\n" << string names[];
+    myFile << "Grade" << int MAX_GRADES[i] << endl;
+    myFile << "Average grade" << averageStudentScores[i] << endl;
+   
+
+    myFile.close();
+    
+}
 }
 
 
