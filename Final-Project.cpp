@@ -94,27 +94,27 @@ int main()
         cout << "Please enter an operation to perform:";
         cin >> userOption;
 
-        if (customerOption == commandGetCount) //call GetCountofTeam function
+        if (userOption == commandGetCount) //call GetCountofTeam function
         {
             //GetCountOfTeam();
         }
-        else if (customerOption == commandGetMostWinning) //call GetMostWinningTeam function
+        else if (userOption == commandGetMostWinning) //call GetMostWinningTeam function
         {
             //GetMostWinningTeam();
         }
-        else if (customerOption == commandGetTeamDate) // call GetTeamForDate function 
+        else if (userOption == commandGetTeamDate) // call GetTeamForDate function 
         {
             //GetTeamForDate();
         }
-        else if (customerOption == commandConvertCase) // call ConvertTeamNameCase function
+        else if (userOption == commandConvertCase) // call ConvertTeamNameCase function
         {
             cout << "Please enter the case to change ('u' = upper and 'l' = lower):";
-            cin >> customerOption;
+            cin >> userOption;
 
-            if (customerOption == upperChoice) { //changes the value of to_upper depending on the customers option
+            if (userOption == upperChoice) { //changes the value of to_upper depending on the customers option
                 to_upper = true;
             }
-            else if (customerOption == lowerChoice)
+            else if (userOption == lowerChoice)
             {
                 to_upper = false;
             }
