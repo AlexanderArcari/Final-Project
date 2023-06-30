@@ -148,7 +148,8 @@ int main()
     char commandMenu = 'm';
     char commandExit = 'x';
     char userOption;
-
+    int grades[MAX_STUDENTS][MAX_GRADES]; // declares the 2d array 
+    int numStudents; // stores grades entered in the varibale
 
 
 
