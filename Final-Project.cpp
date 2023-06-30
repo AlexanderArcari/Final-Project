@@ -55,22 +55,29 @@ void calculateAverages()
 
 }
 
-void readfromFile() {
+bool readfromFile(ifstream& fileName, string names[])
+{
+    bool success;
+    success = true;
+  
+    {
+        bool success;
+        success = true;
 
+        for (int i = 0; i < MAX_STUDENTS; i++)
+        {
+        
+            if (!(fileName >> names[i])) {
+                success = false; // evaluate sucess to false if the arrays are not populated
+                break;
+        }
+            
+        }
 
-    std::ifstream myFile; myFile.open("Student Names.txt");
-    if (myFile.is_open()){
-
-    char mystring;
-    while (myFile) {
-        mystring = myFile.get();
-        std::cout << mystring;
-
-       
+        return success;
     }
-    return;
 }
-}
+
 
 void generateReport(string names[], int scores[][MAX_GRADES], int MAX_GRADES, int averageStudentScores[])
 {
@@ -119,12 +126,18 @@ int main()
     char commandMenu = 'm';
     char commandExit = 'x';
     char userOption;
+    bool status;
+
+    string names[MAX_STUDENTS]; // array to store names
+
+    ifstream myFile("Student Names.txt"); // open file 
+
 
 
     // Call Functions Welcome and Menu
     welcome();
     menu();
-
+    status = readfromFile(myFile, names);
 
     userOption = 't';
 
