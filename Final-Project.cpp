@@ -50,10 +50,48 @@ void enterGrades(string names[], int grades[][MAX_GRADES], int numStudents, cons
     }
 }
 
-void calculateAverages()
+bool readfromFile(ifstream& fileName, string names[])
 {
-    // Implement the logic to calculate averages here
+    bool success;
+    success = true;
+
+    {
+        bool success;
+        success = true;
+
+        for (int i = 0; i < MAX_STUDENTS; i++)
+        {
+
+            if (!(fileName >> names[i])) {
+                success = false; // evaluate sucess to false if the arrays are not populated
+                break;
+            }
+
+        }
+
+        return success;
+    }
 }
+
+//void calculateAverages(string names[], int scores[][MAX_GRADES], int SCORES, int averageScores[])
+//{
+//
+ //   int row;
+   // int col;
+    //int sum;
+
+    //for (row = 0; row < MAX_STUDENTS; row++)
+    //{
+     //   sum = 0;
+     //   for (col = 0; col < MAX_GRADES; col++)
+     //   {
+      //      sum = sum + scores[row][col];
+
+        //}
+        //averageScores[row] = sum / MAX_GRADES;
+
+    //}
+//}
 
 void readFromFile()
 {
@@ -72,16 +110,17 @@ void readFromFile()
     }
 }
 
-void generateReport(string names[], int scores[][MAX_GRADES], int averageStudentScores[])
+void generateReport(string names[], int scores[][MAX_GRADES], int MAX_GRADES, int averageStudentScores[])
 {
     int periodsOne = 15;
     int periodsTwo = 10;
     int PeriodsThree = 8;
 
     ofstream outFile;
-    outFile.open("scores.dat");
 
     cout << setfill('.');
+
+    outFile.open("scores.dat");
 
     for (int i = 0; i < MAX_STUDENTS; i++) {
         cout << left << setw(periodsOne) << names[i];
@@ -90,15 +129,15 @@ void generateReport(string names[], int scores[][MAX_GRADES], int averageStudent
         for (int j = 0; j < MAX_GRADES; j++) {
             cout << right << setw(periodsTwo) << scores[i][j];
             outFile << right << setw(periodsTwo) << scores[i][j];
+
         }
-
-        cout << right << setw(PeriodsThree) << averageStudentScores[i] << " ";
-        outFile << right << setw(PeriodsThree) << averageStudentScores[i] << " ";
-
+        for (int x = 0; x < 1; x++) {
+            cout << right << setw(PeriodsThree) << averageStudentScores[i] << " ";
+            outFile << right << setw(PeriodsThree) << averageStudentScores[i] << " ";
+        }
         cout << endl;
         outFile << endl;
     }
-
     outFile.close();
 }
 
@@ -125,6 +164,7 @@ void saveToFile(string names[], int scores[][MAX_GRADES], int averageStudentScor
 
 int main()
 {
+    //Variable Declaration 
     char commandEnterGrades = 'e';
     char commandCalculateAverage = 'c';
     char commandGenerateReport = 'r';
@@ -132,59 +172,59 @@ int main()
     char commandMenu = 'm';
     char commandExit = 'x';
     char userOption;
-    int grades[MAX_STUDENTS][MAX_GRADES];
-    string names[MAX_STUDENTS];
+    int grades[MAX_STUDENTS][MAX_GRADES]; // declares the 2d array 
+    int numStudents; // stores grades entered in the varibale
 
-    int numStudents;
+    bool status;
 
+    string names[MAX_STUDENTS]; // array to store names
+
+    ifstream myFile("Student Names.txt"); // open file 
+
+
+    // Call Functions Welcome and Menu
     welcome();
     menu();
+
+
+
+
+    status = readfromFile(myFile, names);
 
     userOption = 't';
 
     while (userOption != commandExit)
     {
+
         cout << "Please enter an operation to perform:";
         cin >> userOption;
 
-        if (userOption == commandEnterGrades)
+        if (userOption == commandEnterGrades) //call GetCountofTeam function
         {
-            cout << "Enter the number of students: ";
-            cin >> numStudents;
+            ;
+        }
+        else if (userOption == commandCalculateAverage) //call GetMostWinningTeam function
+        {
+            //GetMostWinningTeam();
+        }
+        else if (userOption == commandGenerateReport) // call GetTeamForDate function 
+        {
+            //GetTeamForDate();
+        }
+        else if (userOption == commandSaveToFile) // call ConvertTeamNameCase function
+        {
+            //saveToFile()
 
-            enterGrades(names, grades, numStudents, MAX_GRADES);
-
-            // Display the entered grades
-            cout << "Entered grades:" << endl;
-            for (int i = 0; i < numStudents; i++) {
-                cout << "Student " << (i + 1) << ": ";
-                for (int j = 0; j < MAX_GRADES; j++) {
-                    cout << grades[i][j] << " ";
-                }
-                cout << endl;
-            }
         }
-        else if (userOption == commandCalculateAverage)
-        {
-            calculateAverages();
-        }
-        else if (userOption == commandGenerateReport)
-        {
-            // Implement the logic to generate the report here
-        }
-        else if (userOption == commandSaveToFile)
-        {
-            // Implement the logic to save to file here
-        }
-        else if (userOption == commandMenu)
-        {
+        else if (userOption == commandMenu) {
             menu();
         }
-        else if (userOption == commandExit)
-        {
-            cout << "Goodbye." << endl;
+        else if (userOption == commandExit) {
+            cout << "Good Bye." << endl;
         }
     }
 
+    // Return 0 to indicate success.
     return 0;
+
 }
