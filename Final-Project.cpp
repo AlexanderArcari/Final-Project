@@ -212,8 +212,8 @@ int main()
     char commandMenu = 'm';
     char commandExit = 'x';
     char userOption;
-    int grades[MAX_STUDENTS][MAX_GRADES]; // declares the 2d array 
-    int numStudents = MAX_STUDENTS; // stores grades entered in the varibale
+    int grades[MAX_STUDENTS][MAX_GRADES];
+    string names[MAX_STUDENTS];
 
     bool status;
 
@@ -241,7 +241,20 @@ int main()
 
         if (userOption == commandEnterGrades) //call GetCountofTeam function
         {
-            enterGrades(names,grades, numStudents, MAX_GRADES);
+            cout << "Enter the number of students: ";
+            cin >> numStudents;
+
+            enterGrades(names, grades, numStudents, MAX_GRADES);
+
+            // Display the entered grades
+            cout << "Entered grades:" << endl;
+            for (int i = 0; i < numStudents; i++) {
+                cout << "Student " << (i + 1) << ": ";
+                for (int j = 0; j < MAX_GRADES; j++) {
+                    cout << grades[i][j] << " ";
+                }
+                cout << endl;
+            }
         }
         else if (userOption == commandCalculateAverage) //call GetMostWinningTeam function
         {
