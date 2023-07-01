@@ -276,3 +276,53 @@ int main()
     return 0;
 
 }
+
+
+// void generateReport(int averageStudentScores[], string letterGrades[], string names[], int grades[][MAX_GRADES], const int MAX_GRADES, const int MAX_STUDENTS)
+// {
+//     int periodsOne = 15;
+//     int periodsTwo = 10;
+//     int periodsThree = 8;
+//     int averageColumn = 1;
+
+//     ofstream outFile;
+//     outFile.open("Student Report.txt");
+
+//     cout << setfill('.');
+
+//     cout << left << setw(periodsOne) << "Name";
+//     cout << right << setw(periodsTwo) << "Grade 1";
+//     cout << right << setw(periodsTwo) << "Grade 2";
+//     cout << right << setw(periodsThree) << "Average" << endl;
+
+//     cout << setfill('-');
+//     cout << setw(periodsOne + periodsTwo + periodsTwo + periodsThree) << "" << endl;
+
+//     outFile << left << setw(periodsOne) << "Name";
+//     outFile << right << setw(periodsTwo) << "Grade 1";
+//     outFile << right << setw(periodsTwo) << "Grade 2";
+//     outFile << right << setw(periodsThree) << "Average" << endl;
+
+//     outFile << setfill('-');
+//     outFile << setw(periodsOne + periodsTwo + periodsTwo + periodsThree) << "" << endl;
+
+//     for (int i = 0; i < MAX_STUDENTS; i++)
+//     {
+//         cout << left << setw(periodsOne) << names[i];
+//         outFile << left << setw(periodsOne) << names[i];
+
+//         for (int j = 0; j < MAX_GRADES; j++)
+//         {
+//             cout << right << setw(periodsTwo) << grades[i][j];
+//             outFile << right << setw(periodsTwo) << grades[i][j];
+//         }
+
+//         cout << right << setw(periodsThree) << averageStudentScores[i];
+//         outFile << right << setw(periodsThree) << averageStudentScores[i];
+
+//         cout << endl;
+//         outFile << endl;
+//     }
+
+//     outFile.close();
+// }
