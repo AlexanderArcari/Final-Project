@@ -39,11 +39,12 @@ void menu()
     cout << "Enter '" << commandExit << "' to exit the program." << endl << endl << endl;
 }
 
-void enterGrades(int grades[][MAX_GRADES], int numStudents)
+void enterGrades(string names[], int grades[][MAX_GRADES], int numStudents, const int MAX_GRADES)
 {
-    for (int i = 0; i < numStudents; i++) {
-        cout << "Enter grades for student " << (i + 1) << ": ";
-        for (int j = 0; j < MAX_GRADES; j++) {
+    for (int i = 0; i < MAX_GRADES; i++) {
+        cout << "Enter grades for Exam " << (i + 1) << endl;
+        for (int j = 0; j < numStudents; j++) {
+            cout << "Enter grades for " << names[j] << endl;
             cin >> grades[i][j];
         }
     }
@@ -132,6 +133,8 @@ int main()
     char commandExit = 'x';
     char userOption;
     int grades[MAX_STUDENTS][MAX_GRADES];
+    string names[MAX_STUDENTS];
+
     int numStudents;
 
     welcome();
@@ -149,7 +152,7 @@ int main()
             cout << "Enter the number of students: ";
             cin >> numStudents;
 
-            enterGrades(grades, numStudents);
+            enterGrades(names, grades, numStudents, MAX_GRADES);
 
             // Display the entered grades
             cout << "Entered grades:" << endl;
