@@ -72,7 +72,37 @@ bool readfromFile(ifstream& fileName, string names[])
         return success;
     }
 }
+void calculateAverages(int grades[][MAX_GRADES], int numStudents)
+{
+    int averageStudentScores[MAX_STUDENTS];
+    char letterGrades[MAX_STUDENTS];
 
+    for (int i = 0; i < numStudents; i++) {
+        int sum = 0;
+        for (int j = 0; j < MAX_GRADES; j++) {
+            sum += grades[i][j];
+        }
+        averageStudentScores[i] = sum / MAX_GRADES;
+
+        // Determine letter grade
+        if (averageStudentScores[i] >= 90) {
+            letterGrades[i] = 'A';
+        } else if (averageStudentScores[i] >= 80) {
+            letterGrades[i] = 'B';
+        } else if (averageStudentScores[i] >= 70) {
+            letterGrades[i] = 'C';
+        } else if (averageStudentScores[i] >= 60) {
+            letterGrades[i] = 'D';
+        } else {
+            letterGrades[i] = 'F';
+        }
+    }
+
+    // Display the calculated averages and letter grades
+    cout << "Calculated averages and letter grades:" << endl;
+    for (int i = 0; i < numStudents; i++) {
+        cout << "Student " << (i + 1) << " - Average: " << averageStudentScores[i] << ", Grade: " << letterGrades[i] << endl;
+    }
 //void calculateAverages(string names[], int scores[][MAX_GRADES], int SCORES, int averageScores[])
 //{
 //
