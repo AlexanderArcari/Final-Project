@@ -1,10 +1,10 @@
-Alex                   77        8800000035BB2FF13000000035BB2FF130
-Anthony                88        7700000035BB2FF13800000035BB2FF138
-John                   88        8800000035BB2FF14000000035BB2FF140
-Chris                  77        7700000035BB2FF14800000035BB2FF148
-Samantha               88        8800000035BB2FF15000000035BB2FF150
-Cindy                  77        7700000035BB2FF15800000035BB2FF158
-Sarah                  88        8800000035BB2FF16000000035BB2FF160
-Gabriella              77        7700000035BB2FF16800000035BB2FF168
-Juan                   88        8800000035BB2FF17000000035BB2FF170
-Brian                  77        7700000035BB2FF17800000035BB2FF178
+Alex                   56        76      66
+Anthony                54        87      70
+John                   76        89      82
+Chris                  87        76      81
+Samantha               89        57      73
+Cindy                  76        88      82
+Sarah                  57        97      77
+Gabriella              88        78      83
+Juan                   97        68      82
+Brian                  78        87      82

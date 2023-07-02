@@ -42,30 +42,28 @@ void menu()
 void enterGrades(int& i, string names[], int grades[][MAX_GRADES], const int MAX_STUDENTS, const int MAX_GRADES)
 {
     char userOption = 'y';
-    int examNumber = 1;
-
+    
     while (i < MAX_GRADES && userOption != 'n')
     {
-        cout << "Enter grades for Exam " << (i + 1) << endl;
+        cout << "Enter grades for Exam " << (i + 1) << endl << endl;
         
-
         for (int j = 0; j < MAX_STUDENTS; j++)
         {
             cout << "Enter grades for " << names[j] << ": ";
             cin >> grades[i][j];
             cout << endl;
         }
+
         i++;
         if (i != MAX_GRADES) 
         {
-            cout << "Would you like to enter the grades for exam " << (i) << "? ('y'= yes and 'n' = no): ";
+            cout << "Would you like to enter the grades for exam " << (i+1) << "? ('y'= yes and 'n' = no): ";
             cin >> userOption;
         }
         else if (i == MAX_GRADES) {
             cout << "You've entered all of the exam grades for this semester. Time to calculate averages, final grades, and generate a report!" << endl;
         }
     
-
     }
 } //
 
@@ -97,10 +95,11 @@ void calculateAverages(int averageStudentScores[], string letterGrades[], string
 
     for (int i = 0; i < MAX_STUDENTS; i++)
     {
-        double sum = 0;
-        for (int j = 0; j < MAX_GRADES; j++) {
-            sum += grades[j][i];
+        int sum = 0;
+        for (int j =0; j < MAX_GRADES; j++) {
+            sum = sum + grades[j][i];
         }
+
         averageStudentScores[i] = sum / MAX_GRADES;
 
         // Determine letter grade
@@ -170,22 +169,10 @@ void generateReport(int averageStudentScores[], string letterGrades[], string na
         {
             cout << right << setw(periodsTwo) << grades[j][i];
             outFile << right << setw(periodsTwo) << grades[j][i];
-
         }
-        for (int x = 0; x < averageColumn; x++) // Debug
-        {
-        
-            cout << right << setw(periodsTwo) << grades[i];
-            outFile << right << setw(periodsTwo) << grades[i];
 
-        }
-        for (int y = 0; y < averageColumn; y++) // Debug
-        {
-
-            cout << right << setw(periodsTwo) << grades[i];
-            outFile << right << setw(periodsTwo) << grades[i];
-
-        }
+        cout << right << setw(periodsThree) << averageStudentScores[i];
+        outFile << right << setw(periodsThree) << averageStudentScores[i];
 
         cout << endl;
         outFile << endl;
@@ -253,6 +240,8 @@ int main()
 
         cout << "Please enter an operation to perform:";
         cin >> userOption;
+        cout << endl;
+        cout << endl;
 
         if (userOption == commandEnterGrades) //call GetCountofTeam function
         {
@@ -286,51 +275,4 @@ int main()
 }
 
 
-// void generateReport(int averageStudentScores[], string letterGrades[], string names[], int grades[][MAX_GRADES], const int MAX_GRADES, const int MAX_STUDENTS)
-// {
-//     int periodsOne = 15;
-//     int periodsTwo = 10;
-//     int periodsThree = 8;
-//     int averageColumn = 1;
 
-//     ofstream outFile;
-//     outFile.open("Student Report.txt");
-
-//     cout << setfill('.');
-
-//     cout << left << setw(periodsOne) << "Name";
-//     cout << right << setw(periodsTwo) << "Grade 1";
-//     cout << right << setw(periodsTwo) << "Grade 2";
-//     cout << right << setw(periodsThree) << "Average" << endl;
-
-//     cout << setfill('-');
-//     cout << setw(periodsOne + periodsTwo + periodsTwo + periodsThree) << "" << endl;
-
-//     outFile << left << setw(periodsOne) << "Name";
-//     outFile << right << setw(periodsTwo) << "Grade 1";
-//     outFile << right << setw(periodsTwo) << "Grade 2";
-//     outFile << right << setw(periodsThree) << "Average" << endl;
-
-//     outFile << setfill('-');
-//     outFile << setw(periodsOne + periodsTwo + periodsTwo + periodsThree) << "" << endl;
-
-//     for (int i = 0; i < MAX_STUDENTS; i++)
-//     {
-//         cout << left << setw(periodsOne) << names[i];
-//         outFile << left << setw(periodsOne) << names[i];
-
-//         for (int j = 0; j < MAX_GRADES; j++)
-//         {
-//             cout << right << setw(periodsTwo) << grades[i][j];
-//             outFile << right << setw(periodsTwo) << grades[i][j];
-//         }
-
-//         cout << right << setw(periodsThree) << averageStudentScores[i];
-//         outFile << right << setw(periodsThree) << averageStudentScores[i];
-
-//         cout << endl;
-//         outFile << endl;
-//     }
-
-//     outFile.close();
-// }
