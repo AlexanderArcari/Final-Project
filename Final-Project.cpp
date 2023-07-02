@@ -144,14 +144,22 @@ void generateReport(int averageStudentScores[], string letterGrades[], string na
 {
     int periodsOne = 15;
     int periodsTwo = 10;
-    int PeriodsThree = 8;
+    int periodsThree = 8;
     int averageColumn = 1;
 
     ofstream outFile;
+    outFile.open("Student Report.txt");
+    
+    cout << setfill('.');
+    cout << left << setw(periodsOne) << "Name";
+    cout << right << setw(periodsTwo) << "Exam 1";
+    cout << right << setw(periodsTwo) << "Exam 2";
+    cout << right << setw(periodsThree) << "Average" << endl;
+    cout << setfill(' ');
+
+    cout << setw(periodsOne + periodsTwo + periodsTwo + periodsThree) << "" << endl;
 
     cout << setfill('.');
-
-    outFile.open("Student Report.txt");
 
     for (int i = 0; i < MAX_STUDENTS; i++)
     {
