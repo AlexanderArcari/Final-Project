@@ -55,7 +55,6 @@ void enterGrades(int& i, string names[], int grades[][MAX_GRADES], const int MAX
 {
     char userOption = 'y';
     
-    int rowOfPeriods2 = 45;
     int rowOfPeriods1 = 90;
 
 
@@ -63,8 +62,8 @@ void enterGrades(int& i, string names[], int grades[][MAX_GRADES], const int MAX
     {
 
         cout << setfill('-');
-        cout << setw(45) << "" << endl;
-        cout << right << setw(30) << "Exam " << (i + 1) << " Grades" << setw(45) << endl;
+        cout << setw(rowOfPeriods1 -1) << "" << endl;
+        cout << right << setw(44) << " Exam " << (i + 1) << " Grades " << setw(37) << " " << endl;
         cout << setw(rowOfPeriods1 - 1) << "";
         cout << endl << endl;
         
@@ -80,6 +79,7 @@ void enterGrades(int& i, string names[], int grades[][MAX_GRADES], const int MAX
         {
             cout << "Would you like to enter the grades for exam " << (i+1) << "? ('y'= yes and 'n' = no): ";
             cin >> userOption;
+            cout << endl;
         }
         else if (i == MAX_GRADES) {
             cout << "You've entered all of the exam grades for this semester. Time to calculate averages, final grades, and generate a report!" << endl;
