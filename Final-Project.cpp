@@ -94,6 +94,43 @@ void enterGrades(int& i, string names[], int grades[][MAX_GRADES], const int MAX
     }
 } 
 
+void editStudentGrade(string names[], int grades[][MAX_GRADES], const int MAX_STUDENTS, const int MAX_GRADES) {
+    string studentName;
+    int examNumber;
+    int newGrade;
+
+    cout << "Enter the name of the student whose grade you would like to change: " << endl;
+    cin >> studentName;
+
+    //Find name in array
+
+    int namesIndex = -1;
+    for (int i = 0; i < MAX_STUDENTS; i++) {
+        if (names[i] == studentName) {
+            namesIndex = i;
+            break;
+        }
+    }
+
+    if (namesIndex == -1) {
+        cout << "Error, student not found in class." << endl;
+
+    }
+
+    cout << "Enter the exam number that you would like to change (1-4): ";
+    cin >> examNumber;
+
+    if (examNumber > MAX_GRADES || examNumber < 1) {
+        cout << "Invalid exam number." << endl;
+    }
+
+    cout << "Enter the new exam score: ";
+    cin >> newGrade;
+
+
+
+}
+
 bool readfromFile(ifstream& fileName, string names[]) // This function uses arrays, decision structures, and loops to read a file of names into an array. If the file does not populate the array, an error message is displayed. 
                                                         // Written by: Arber Prendi
 {
@@ -117,6 +154,7 @@ bool readfromFile(ifstream& fileName, string names[]) // This function uses arra
         return success;
     }
 }
+
 
 void calculateAverages(int averageStudentScores[], string letterGrades[], string names[], int grades[][MAX_GRADES], const int MAX_STUDENTS, const int MAX_GRADES) // This function uses a nested loop, multi decision structure,
                                                                                                                                                                   // and a single loop to calculate and display the average, as well as determine the students letter grade
@@ -220,6 +258,7 @@ void generateFinalReport(int averageStudentScores[], string letterGrades[], stri
         
     }
 }
+
 
 void saveToFile(int averageStudentScores[], string letterGrades[], string names[], int grades[][MAX_GRADES], const int MAX_GRADES, const int MAX_STUDENTS) // Utilizes the ofstream, and nested for loops to save the report to a file.
                                                                                                                                                             // Written by: Arber Prendi
