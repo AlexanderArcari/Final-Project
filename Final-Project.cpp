@@ -8,7 +8,8 @@ using namespace std;
 const int MAX_STUDENTS = 10;
 const int MAX_GRADES = 4;
 
-struct StudentGradeInfo { // utilizes a structure to create multiple members for x number of students.
+struct StudentGradeInfo { // utilizes a structure to create multiple members for the total number of students.
+                          // Written by: Alexander Arcari
     string name = "John";
     int examGrade1 =0;
     int examGrade2 = 0;
@@ -18,7 +19,8 @@ struct StudentGradeInfo { // utilizes a structure to create multiple members for
     string letterGrade = "A";
 };
 
-void welcome()
+void welcome() // This function creates a title for our program to make it appear more professional
+               // Written by: Arber Prendi
 {
     int rowOfPeriods2 = 45;
     string welcome = " Classroom Grades Program ";
@@ -30,7 +32,9 @@ void welcome()
     cout << setw(rowOfPeriods1-1) << "" << endl << endl;
 }
 
-void menu()
+void menu() // This function displays the users options and can be called at any point in the program
+            // Written by: Alexander Arcari 
+            
 {
     char commandEnterGrades = 'e';
     char commandCalculateAverage = 'c';
@@ -51,7 +55,9 @@ void menu()
     cout << "Enter '" << commandExit << "' to exit the program." << endl << endl << endl;
 }
 
-void enterGrades(int& i, string names[], int grades[][MAX_GRADES], const int MAX_STUDENTS, const int MAX_GRADES)
+void enterGrades(int& i, string names[], int grades[][MAX_GRADES], const int MAX_STUDENTS, const int MAX_GRADES) // This function uses arrays, loops, and decision structures to allow user to input grades for exams 
+                                                                                                                 // It passes the i value in as reference so that the user can enter and leave the function at any point and keep the progress made
+                                                                                                                 // Written by Anthony Al-Khafaji w/ some debugging by Alex 
 {
     char userOption = 'y';
     
@@ -86,9 +92,10 @@ void enterGrades(int& i, string names[], int grades[][MAX_GRADES], const int MAX
         }
     
     }
-} //
+} 
 
-bool readfromFile(ifstream& fileName, string names[])
+bool readfromFile(ifstream& fileName, string names[]) // This function uses arrays, decision structures, and loops to read a file of names into an array. If the file does not populate the array, an error message is displayed. 
+                                                        // Written by: Arber Prendi
 {
     bool success;
     success = true;
@@ -101,7 +108,7 @@ bool readfromFile(ifstream& fileName, string names[])
         {
 
             if (!(fileName >> names[i])) {
-                success = false; // evaluate sucess to false if the arrays are not populated
+                success = false; // evaluate success to false if arrays are not populated
                 break;
             }
 
@@ -111,7 +118,9 @@ bool readfromFile(ifstream& fileName, string names[])
     }
 }
 
-void calculateAverages(int averageStudentScores[], string letterGrades[], string names[], int grades[][MAX_GRADES], const int MAX_STUDENTS, const int MAX_GRADES)
+void calculateAverages(int averageStudentScores[], string letterGrades[], string names[], int grades[][MAX_GRADES], const int MAX_STUDENTS, const int MAX_GRADES) // This function uses a nested loop, multi decision structure,
+                                                                                                                                                                  // and a single loop to calculate and display the average, as well as determine the students letter grade
+                                                                                                                                                                  // Written by: Anthony Al-Khafaji
 {
 
     for (int i = 0; i < MAX_STUDENTS; i++)
@@ -161,6 +170,7 @@ void calculateAverages(int averageStudentScores[], string letterGrades[], string
 }
 
 void generateIndividualReport(StudentGradeInfo student1) { // This function prints the individual grades, average grade, and letter grade to the screen for a student of the user's choosing. 
+                                                           // Written by: Alexander Arcari
 
     cout << "Name: " << student1.name << endl;
     cout << "Exam 1: " << student1.examGrade1 << endl;
@@ -171,15 +181,13 @@ void generateIndividualReport(StudentGradeInfo student1) { // This function prin
     cout << "Final Grade: " << student1.letterGrade << endl;
 }
 
-void generateFinalReport(int averageStudentScores[], string letterGrades[], string names[], int grades[][MAX_GRADES], const int MAX_GRADES, const int MAX_STUDENTS) //Ask for help
+void generateFinalReport(int averageStudentScores[], string letterGrades[], string names[], int grades[][MAX_GRADES], const int MAX_GRADES, const int MAX_STUDENTS) //This function utilizes a nested for loops and arrays to display a final report of grades for all students
+                                                                                                                                                                    // Written by: Anthony Al-Khafaji & Alexander Arcari 
 {
     int periodsOne = 15;
     int periodsTwo = 10;
     int periodsThree = 8;
     int averageColumn = 1;
-
-    ofstream outFile;
-    outFile.open("Student Report.txt");
     
     cout << setfill(' ');
     cout << left << setw(periodsOne) << "Name";
@@ -197,26 +205,24 @@ void generateFinalReport(int averageStudentScores[], string letterGrades[], stri
     for (int i = 0; i < MAX_STUDENTS; i++)
     {
         cout << left << setw(periodsOne) << names[i];
-        outFile << left << setw(periodsOne) << names[i];
+        
 
         for (int j = 0; j < MAX_GRADES; j++)
         {
             cout << right << setw(periodsTwo) << grades[j][i];
-            outFile << right << setw(periodsTwo) << grades[j][i];
+           
         }
 
         cout << right << setw(periodsThree) << averageStudentScores[i];
-        outFile << right << setw(periodsThree) << averageStudentScores[i];
+        
 
         cout << endl;
-        outFile << endl;
+        
     }
-
-     
-    outFile.close();
 }
 
-void saveToFile(int averageStudentScores[], string letterGrades[], string names[], int grades[][MAX_GRADES], const int MAX_GRADES, const int MAX_STUDENTS)
+void saveToFile(int averageStudentScores[], string letterGrades[], string names[], int grades[][MAX_GRADES], const int MAX_GRADES, const int MAX_STUDENTS) // Utilizes the ofstream, and nested for loops to save the report to a file.
+                                                                                                                                                            // Written by: Arber Prendi
 {
     int periodsOne = 15;
     int periodsTwo = 10;
@@ -226,10 +232,12 @@ void saveToFile(int averageStudentScores[], string letterGrades[], string names[
     ofstream outFile;
     outFile.open("Student Final Report.txt");
 
-    outFile << setfill('.');
+    outFile << setfill(' ');
     outFile << left << setw(periodsOne) << "Name";
     outFile << right << setw(periodsTwo) << "Exam 1";
     outFile << right << setw(periodsTwo) << "Exam 2";
+    outFile << right << setw(periodsTwo) << "Exam 3";
+    outFile << right << setw(periodsTwo) << "Exam 4";
     outFile << right << setw(periodsThree) << "Average" << endl;
     outFile << setfill(' ');
 
@@ -277,7 +285,7 @@ int main()
     bool status;
 
 
-    ifstream myFile("Student Names.txt"); // open file 
+    ifstream myFile("Student Names.txt"); // Open Student Names file 
 
     // Call Functions Welcome and Menu
     welcome();
@@ -303,7 +311,8 @@ int main()
         {
             calculateAverages(averageStudentScores, letterGrades, names, grades, MAX_STUDENTS, MAX_GRADES);
         }
-        else if (userOption == commandGenerateIndividualReport) { // Command Generate Individual Report calls a function that allows the user to enter a name of a student that they want an individual report for. 
+        else if (userOption == commandGenerateIndividualReport) { // Command Generate Individual Report calls a function that allows the user to enter a name of a student that they want an individual report for.
+                                                                  // Written by Alexander Arcari
 
             //Structure Variable Declaration
             StudentGradeInfo student1, student2, student3, student4, student5, student6, student7, student8, student9, student10;
@@ -401,8 +410,7 @@ int main()
 
             cout << "For which student would you like to generate a report? ";
             cin >> studentName;
-
-
+            cout << endl;
 
             if (studentName == student1.name) { // multi-if structure to determine which student member is sent to the generate individual report function
                 generateIndividualReport(student1);
