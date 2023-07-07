@@ -6,16 +6,16 @@
 using namespace std;
 
 const int MAX_STUDENTS = 10;
-const int MAX_GRADES = 2;
+const int MAX_GRADES = 4;
 
 struct StudentGradeInfo { // utilizes a structure to create multiple members for x number of students.
-    string name;
-    int examGrade1;
-    int examGrade2;
-    //int examGrade3;
-    //int examGrade4;
-    int averageGrade;
-    string letterGrade;
+    string name = "John";
+    int examGrade1 =0;
+    int examGrade2 = 0;
+    int examGrade3 = 0;
+    int examGrade4 = 0;
+    int averageGrade = 0;
+    string letterGrade = "A";
 };
 
 void welcome()
@@ -55,9 +55,18 @@ void enterGrades(int& i, string names[], int grades[][MAX_GRADES], const int MAX
 {
     char userOption = 'y';
     
+    int rowOfPeriods2 = 45;
+    int rowOfPeriods1 = 90;
+
+
     while (i < MAX_GRADES && userOption != 'n')
     {
-        cout << "Enter grades for Exam " << (i + 1) << endl;
+
+        cout << setfill('-');
+        cout << setw(45) << "" << endl;
+        cout << right << setw(30) << "Exam " << (i + 1) << " Grades" << setw(45) << endl;
+        cout << setw(rowOfPeriods1 - 1) << "";
+        cout << endl << endl;
         
         for (int j = 0; j < MAX_STUDENTS; j++)
         {
@@ -156,6 +165,8 @@ void generateIndividualReport(StudentGradeInfo student1) { // This function prin
     cout << "Name: " << student1.name << endl;
     cout << "Exam 1: " << student1.examGrade1 << endl;
     cout << "Exam 2: " << student1.examGrade2 << endl;
+    cout << "Exam 3: " << student1.examGrade3 << endl;
+    cout << "Exam 4: " << student1.examGrade4 << endl;
     cout << "Average Student Score: " << student1.averageGrade << endl;
     cout << "Final Grade: " << student1.letterGrade << endl;
 }
@@ -170,10 +181,12 @@ void generateFinalReport(int averageStudentScores[], string letterGrades[], stri
     ofstream outFile;
     outFile.open("Student Report.txt");
     
-    cout << setfill('.');
+    cout << setfill(' ');
     cout << left << setw(periodsOne) << "Name";
     cout << right << setw(periodsTwo) << "Exam 1";
     cout << right << setw(periodsTwo) << "Exam 2";
+    cout << right << setw(periodsTwo) << "Exam 3";
+    cout << right << setw(periodsTwo) << "Exam 4";
     cout << right << setw(periodsThree) << "Average" << endl;
     cout << setfill(' ');
 
@@ -277,8 +290,8 @@ int main()
     while (userOption != commandExit)
     {
 
-        cout << "Please enter an operation to perform:";
-        cin >> userOption;
+        cout << "Please enter an menu option: ";
+        cin >> userOption; 
         cout << endl;
 
         if (userOption == commandEnterGrades) //call GetCountofTeam function
@@ -299,8 +312,8 @@ int main()
             student1.name = names[0];
             student1.examGrade1 = grades[0][0];
             student1.examGrade2 = grades[1][0];
-            //student1.examGrade3 = grades[2][];
-            //student1.examGrade4 = grades[3][];
+            student1.examGrade3 = grades[2][0];
+            student1.examGrade4 = grades[3][0];
             student1.averageGrade = averageStudentScores[0];
             student1.letterGrade = letterGrades[0];
 
@@ -308,11 +321,87 @@ int main()
             student2.name = names[1];
             student2.examGrade1 = grades[0][1];
             student2.examGrade2 = grades[1][1];
+            student2.examGrade3 = grades[2][1];
+            student2.examGrade4 = grades[3][1];
             student2.averageGrade = averageStudentScores[1];
             student2.letterGrade = letterGrades[1];
 
+            //Student 3
+            student3.name = names[2];
+            student3.examGrade1 = grades[0][2];
+            student3.examGrade2 = grades[1][2];
+            student3.examGrade3 = grades[2][2];
+            student3.examGrade4 = grades[3][2];
+            student3.averageGrade = averageStudentScores[2];
+            student3.letterGrade = letterGrades[2];
+
+            //Student 4
+            student4.name = names[3];
+            student4.examGrade1 = grades[0][3];
+            student4.examGrade2 = grades[1][3];
+            student4.examGrade3 = grades[2][3];
+            student4.examGrade4 = grades[3][3];
+            student4.averageGrade = averageStudentScores[3];
+            student4.letterGrade = letterGrades[3];
+
+            //Student 5
+            student5.name = names[4];
+            student5.examGrade1 = grades[0][4];
+            student5.examGrade2 = grades[1][4];
+            student5.examGrade3 = grades[2][4];
+            student5.examGrade4 = grades[3][4];
+            student5.averageGrade = averageStudentScores[4];
+            student5.letterGrade = letterGrades[4];
+            
+            //Student 6
+            student6.name = names[5];
+            student6.examGrade1 = grades[0][5];
+            student6.examGrade2 = grades[1][5];
+            student6.examGrade3 = grades[2][5];
+            student6.examGrade4 = grades[3][5];
+            student6.averageGrade = averageStudentScores[5];
+            student6.letterGrade = letterGrades[5];
+
+            //Student 7
+            student7.name = names[6];
+            student7.examGrade1 = grades[0][6];
+            student7.examGrade2 = grades[1][6];
+            student7.examGrade3 = grades[2][6];
+            student7.examGrade4 = grades[3][6];
+            student7.averageGrade = averageStudentScores[6];
+            student7.letterGrade = letterGrades[6];
+
+            //Student 8
+            student8.name = names[7];
+            student8.examGrade1 = grades[0][7];
+            student8.examGrade2 = grades[1][7];
+            student8.examGrade3 = grades[2][7];
+            student8.examGrade4 = grades[3][7];
+            student8.averageGrade = averageStudentScores[7];
+            student8.letterGrade = letterGrades[7];
+
+            //Student 9
+            student9.name = names[8];
+            student9.examGrade1 = grades[0][8];
+            student9.examGrade2 = grades[1][8];
+            student9.examGrade3 = grades[2][8];
+            student9.examGrade4 = grades[3][8];
+            student9.averageGrade = averageStudentScores[8];
+            student9.letterGrade = letterGrades[8];
+
+            //Student 10
+            student10.name = names[9];
+            student10.examGrade1 = grades[0][9];
+            student10.examGrade2 = grades[1][9];
+            student10.examGrade3 = grades[2][9];
+            student10.examGrade4 = grades[3][9];
+            student10.averageGrade = averageStudentScores[9];
+            student10.letterGrade = letterGrades[9];
+
+
             cout << "For which student would you like to generate a report? ";
             cin >> studentName;
+
 
 
             if (studentName == student1.name) { // multi-if structure to determine which student member is sent to the generate individual report function
@@ -322,30 +411,33 @@ int main()
                 generateIndividualReport(student2);
             }
             else if (studentName == student3.name) {
-                
+                generateIndividualReport(student3);
             }
             else if (studentName == student4.name) {
-                
+                generateIndividualReport(student4);
             }
             else if (studentName == student5.name) {
-               
+                generateIndividualReport(student5);
             }
             else if (studentName == student6.name) {
-               
+                generateIndividualReport(student6);
             }
             else if (studentName == student7.name) {
-                
+                generateIndividualReport(student7);
             }
             else if (studentName == student8.name) {
-                
+                generateIndividualReport(student8);
             }
             else if (studentName == student9.name) {
-                
+                generateIndividualReport(student9);
             }
             else if (studentName == student10.name) {
-                
+                generateIndividualReport(student10);
             }
-
+            else {
+                cout << "Hmm, try again." << endl;
+                break;
+            }
         }
         else if (userOption == commandGenerateFinalReport) // call Generate Final Report function 
         {
