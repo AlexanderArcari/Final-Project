@@ -77,7 +77,7 @@ void enterGrades(int& i, string names[], int grades[][MAX_GRADES], const int MAX
         
         for (int j = 0; j < MAX_STUDENTS; j++)
         {
-            cout << "Enter grades for " << names[j] << ": ";
+            cout << "Enter an integer grade for " << names[j] << ": ";
             cin >> grades[i][j];
             cout << endl;
         }
