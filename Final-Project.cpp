@@ -20,7 +20,7 @@ struct StudentGradeInfo { // utilizes a structure to create multiple members for
 };
 
 void welcome() // This function creates a title for our program to make it appear more professional
-               // Written by: Arber Prendi
+               // Written by: Arber Prendi 
 {
     int rowOfPeriods2 = 45;
     string welcome = " Classroom Grades Program ";
@@ -51,15 +51,15 @@ void menu() // This function displays the users options and can be called at any
     cout << "Enter '" << commandCalculateAverage << "' to calculate averages." << endl;
     cout << "Enter '" << commandGenerateIndividualReport << "' to generate an individual report." << endl;
     cout << "Enter '" << commandGenerateFinalReport << "' to generate a final grade report for the class." << endl;
+    cout << "Enter '" << commandEditStudentGrades << "' to edit student grades." << endl;
     cout << "Enter '" << commandSaveToFile << "' to save work to file." << endl;
     cout << "Enter '" << commandMenu << "' to call the menu options." << endl;
-    cout << "Enter '" << commandExit << "' to exit the program." << endl;
-    cout << "Enter '" << commandEditStudentGrades << "' to edit student grades." << endl << endl;
+    cout << "Enter '" << commandExit << "' to exit the program." << endl << endl;
 }
 
 void enterGrades(int& i, string names[], int grades[][MAX_GRADES], const int MAX_STUDENTS, const int MAX_GRADES) // This function uses arrays, loops, and decision structures to allow user to input grades for exams 
                                                                                                                  // It passes the i value in as reference so that the user can enter and leave the function at any point and keep the progress made
-                                                                                                                 // Written by Anthony Al-Khafaji w/ some debugging by Alex 
+                                                                                                                 // Written by Anthony Al-Khafaji  
 {
     char userOption = 'y';
     
@@ -136,7 +136,7 @@ void editStudentGrade(string names[], int grades[][MAX_GRADES], const int MAX_ST
 }
 
 bool readfromFile(ifstream& fileName, string names[]) // This function uses arrays, decision structures, and loops to read a file of names into an array. If the file does not populate the array, an error message is displayed. 
-                                                        // Written by: Arber Prendi
+                                                        // Written by: Arber Prendi w/ debugging from Alex 
 {
     bool success;
     success = true;
