@@ -363,7 +363,7 @@ int main()
             //Structure Variable Declaration
             StudentGradeInfo student1, student2, student3, student4, student5, student6, student7, student8, student9, student10;
 
-            //Student 1
+            //Student 1 // assign each student their name, their grades on each exam (found in the arrays) and their average grade, letter grade. 
             student1.name = names[0];
             student1.examGrade1 = grades[0][0];
             student1.examGrade2 = grades[1][0];
