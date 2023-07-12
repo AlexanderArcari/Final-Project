@@ -5,8 +5,7 @@
 
 using namespace std;
 
-const int MAX_STUDENTS = 10
-;
+const int MAX_STUDENTS = 10;
 const int MAX_GRADES = 4;
 
 struct StudentGradeInfo { // utilizes a structure to create multiple members for the total number of students.
@@ -48,13 +47,13 @@ void menu() // This function displays the users options and can be called at any
 
     cout << endl;
 
-    cout << "Enter '" << commandEnterGrades << "' to enter grades." << endl;
-    cout << "Enter '" << commandCalculateAverage << "' to calculate averages." << endl;
-    cout << "Enter '" << commandGenerateIndividualReport << "' to generate an individual report." << endl;
-    cout << "Enter '" << commandGenerateFinalReport << "' to generate a final grade report for the class." << endl;
-    cout << "Enter '" << commandEditStudentGrades << "' to edit student grades." << endl;
-    cout << "Enter '" << commandSaveToFile << "' to save work to file." << endl;
-    cout << "Enter '" << commandMenu << "' to call the menu options." << endl;
+    cout << "Enter '" << commandEnterGrades << "' to enter grades for exams 1-4." << endl;
+    cout << "Enter '" << commandCalculateAverage << "' to calculate the average final grade after entering all grades." << endl;
+    cout << "Enter '" << commandGenerateIndividualReport << "' to generate an individual student report after entering exam scores and calculating averages." << endl;
+    cout << "Enter '" << commandGenerateFinalReport << "' to generate a final grade report for the class after entering exam scores and calculating averages." << endl;
+    cout << "Enter '" << commandEditStudentGrades << "' to edit specific student exam grades." << endl;
+    cout << "Enter '" << commandSaveToFile << "' to save work to a file." << endl;
+    cout << "Enter '" << commandMenu << "' to show the menu options." << endl;
     cout << "Enter '" << commandExit << "' to exit the program." << endl << endl;
 }
 
@@ -167,10 +166,18 @@ bool readfromFile(ifstream& fileName, string names[]) // This function uses arra
 }
 
 
-void calculateAverages(int averageStudentScores[], string letterGrades[], string names[], int grades[][MAX_GRADES], const int MAX_STUDENTS, const int MAX_GRADES) // This function uses a nested loop, multi decision structure,
+void calculateAverages(double averageStudentScores[], string letterGrades[], string names[], int grades[][MAX_GRADES], const int MAX_STUDENTS, const int MAX_GRADES) // This function uses a nested loop, multi decision structure,
 // and a single loop to calculate and display the average, as well as determine the students letter grade
 // Written by: Anthony Al-Khafaji
 {
+    int highA = 94;
+    int lowA = 90;
+    int highB = 85;
+    int lowB = 80;
+    int highC = 75;
+    int lowC = 70;
+    int highD = 65;
+    int lowD = 60;
 
     for (int i = 0; i < MAX_STUDENTS; i++)
     {
@@ -179,31 +186,31 @@ void calculateAverages(int averageStudentScores[], string letterGrades[], string
             sum = sum + grades[i][j];
         }
 
-        averageStudentScores[i] = sum / MAX_GRADES;
+        averageStudentScores[i] = static_cast <double> (sum) / MAX_GRADES;
 
         // Determine letter grade
-        if (averageStudentScores[i] >= 95) {
+        if (averageStudentScores[i] >= highA) {
             letterGrades[i] = "A";
         }
-        else if (averageStudentScores[i] >= 90 && averageStudentScores[i] < 95) {
+        else if (averageStudentScores[i] >= lowA && averageStudentScores[i] < highA) {
             letterGrades[i] = "A-";
         }
-        else if (averageStudentScores[i] >= 85 && averageStudentScores[i] < 90) {
+        else if (averageStudentScores[i] >= highB && averageStudentScores[i] < lowA) {
             letterGrades[i] = "B";
         }
-        else if (averageStudentScores[i] >= 80 && averageStudentScores[i] < 85) {
+        else if (averageStudentScores[i] >= lowB && averageStudentScores[i] < highB) {
             letterGrades[i] = "B-";
         }
-        else if (averageStudentScores[i] >= 75 && averageStudentScores[i] < 80) {
+        else if (averageStudentScores[i] >= highC && averageStudentScores[i] < lowB) {
             letterGrades[i] = "C";
         }
-        else if (averageStudentScores[i] >= 70 && averageStudentScores[i] < 75) {
+        else if (averageStudentScores[i] >= lowC && averageStudentScores[i] < highC) {
             letterGrades[i] = "C-";
         }
-        else if (averageStudentScores[i] >= 65 && averageStudentScores[i] < 70) {
+        else if (averageStudentScores[i] >= highD && averageStudentScores[i] < lowC) {
             letterGrades[i] = "D";
         }
-        else if (averageStudentScores[i] >= 60 && averageStudentScores[i] < 65) {
+        else if (averageStudentScores[i] >= lowD && averageStudentScores[i] < highD) {
             letterGrades[i] = "D-";
         }
         else {
@@ -214,12 +221,14 @@ void calculateAverages(int averageStudentScores[], string letterGrades[], string
     // Display the calculated averages and letter grades
     cout << "Calculated averages and letter grades:" << endl;
     for (int i = 0; i < MAX_STUDENTS; i++) {
-        cout << names[i] << " - Average: " << averageStudentScores[i] << ", Grade: " << letterGrades[i] << endl;
+        cout << fixed << setprecision(2) << names[i] << " - Average: " << averageStudentScores[i] << "%" << ", Grade: " << letterGrades[i] << endl;
     }
 }
 
 void generateIndividualReport(StudentGradeInfo student1) { // This function prints the individual grades, average grade, and letter grade to the screen for a student of the user's choosing. 
     // Written by: Alexander Arcari
+
+    cout << fixed << setprecision(2);
 
     cout << "Name: " << student1.name << endl << endl;
     cout << "Exam 1: " << student1.examGrade1 << endl;
@@ -231,13 +240,15 @@ void generateIndividualReport(StudentGradeInfo student1) { // This function prin
     cout << "Final Grade: " << student1.letterGrade << endl;
 }
 
-void generateFinalReport(int averageStudentScores[], string letterGrades[], string names[], int grades[][MAX_GRADES], const int MAX_GRADES, const int MAX_STUDENTS) //This function utilizes a nested for loops and arrays to display a final report of grades for all students
+void generateFinalReport(double averageStudentScores[], string letterGrades[], string names[], int grades[][MAX_GRADES], const int MAX_GRADES, const int MAX_STUDENTS) //This function utilizes a nested for loops and arrays to display a final report of grades for all students
 // Written by: Anthony Al-Khafaji & Alexander Arcari 
 {
     int periodsOne = 15;
     int periodsTwo = 10;
     int periodsThree = 8;
     int averageColumn = 1;
+    
+    cout << fixed << setprecision(2);
 
     cout << setfill(' ');
     cout << left << setw(periodsOne) << "Name";
@@ -272,13 +283,14 @@ void generateFinalReport(int averageStudentScores[], string letterGrades[], stri
 }
 
 
-void saveToFile(int averageStudentScores[], string letterGrades[], string names[], int grades[][MAX_GRADES], const int MAX_GRADES, const int MAX_STUDENTS) // Utilizes the ofstream, and nested for loops to save the report to a file.
+void saveToFile(double averageStudentScores[], string letterGrades[], string names[], int grades[][MAX_GRADES], const int MAX_GRADES, const int MAX_STUDENTS) // Utilizes the ofstream, and nested for loops to save the report to a file.
 // Written by: Arber Prendi
 {
     int periodsOne = 15;
     int periodsTwo = 10;
     int periodsThree = 8;
     int averageColumn = 1;
+    cout << fixed << setprecision(2);
 
     ofstream outFile;
     outFile.open("Student Final Report.txt");
@@ -332,7 +344,7 @@ int main()
     string studentName;
     int grades[MAX_STUDENTS][MAX_GRADES];
     string names[MAX_STUDENTS];
-    int averageStudentScores[MAX_STUDENTS];
+    double averageStudentScores[MAX_STUDENTS];
     string letterGrades[MAX_STUDENTS];
     int examNumber = 0;
     bool status;
