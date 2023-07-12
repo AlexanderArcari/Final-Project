@@ -1,5 +1,6 @@
 // Student Grade Analyzer
 // Written by Alexander Arcari, Anthony Al-Khafaji, and Arber Prendi
+
 // The following program can be used to calculate grades for the end of the semester. First, the program shows a welcome message and the menu options, it then reads in a text file named Student Names.txt. After the introduction portion of the program, the program asks the user to
 // select a menu option available. I would recommend entering the grades, calculating the averages, showing a final report, and then fixing any mistakes using the edit student grades function. After making edits, showing individual reports, calculating averages, etc. The user is given the option
 // to save the final report to a file named Student Report.txt. The user can then exit their program with the report made. 
@@ -53,6 +54,8 @@ void menu() // This function displays the users options and can be called at any
 
     cout << endl;
 
+    // Outputs all of the menu options
+
     cout << "Enter '" << commandEnterGrades << "' to enter grades for exams 1-4." << endl;
     cout << "Enter '" << commandCalculateAverage << "' to calculate the average final grade after entering all grades." << endl;
     cout << "Enter '" << commandGenerateIndividualReport << "' to generate an individual student report after entering exam scores and calculating averages." << endl;
@@ -64,8 +67,8 @@ void menu() // This function displays the users options and can be called at any
 }
 
 void enterGrades(int& i, string names[], int grades[][MAX_GRADES], const int MAX_STUDENTS, const int MAX_GRADES) // This function uses arrays, loops, and decision structures to allow user to input grades for exams 
-// It passes the i value in as reference so that the user can enter and leave the function at any point and keep the progress made
-// Written by Anthony Al-Khafaji  
+                                                                                                                // It passes the i value in as reference so that the user can enter and leave the function at any point and keep the progress made
+                                                                                                                // Written by Anthony Al-Khafaji  
 {
     char userOption = 'y';
 
@@ -80,12 +83,12 @@ void enterGrades(int& i, string names[], int grades[][MAX_GRADES], const int MAX
         cout << setw(rowOfPeriods1 - 1) << "";
         cout << endl << endl;
 
-        for (int j = 0; j < MAX_STUDENTS; j++)
+        for (int j = 0; j < MAX_STUDENTS; j++) // Uses a double loop to fill the dual array
         {
-            cout << "Enter an integer grade for " << names[j] << ": ";
+            cout << "Enter an integer grade for " << names[j] << " (Example - 98): ";
             while (!(cin >> grades[j][i]))
             {
-                cout << "Error. Please try again with a valid integer value. (Example - 98): ";
+                cout << endl << "Error. Please try again with a valid integer value. (Example - 98): ";
                 cin.clear();
                 cin.ignore(100, '\n');
             }
@@ -100,6 +103,7 @@ void enterGrades(int& i, string names[], int grades[][MAX_GRADES], const int MAX
             cin >> userOption;
             cout << endl;
         }
+
         else if (i == MAX_GRADES) {
             cout << "You've entered all of the exam grades for this semester. You can now calculate averages and final grades, edit entered grades, and generate reports!" << endl;
         }
@@ -108,13 +112,13 @@ void enterGrades(int& i, string names[], int grades[][MAX_GRADES], const int MAX
 }
 
 void editStudentGrade(string names[], int grades[][MAX_GRADES], const int MAX_STUDENTS, const int MAX_GRADES) { //Function that allows the user to go back into program and change a grade for a student 
-    // Written by: Alexander Arcari 
+                                                                                                                // Written by: Alexander Arcari 
     string studentName;
     int examNumber;
     int newGrade;
     int initializeColumn = 1;
 
-    cout << "Enter the name of the student whose grade you would like to change: "; // User chooses student that they would like to change the exam score for.
+    cout << "Enter the name of the student whose grade you would like to change (Alex, Anthony...): "; // User chooses student that they would like to change the exam score for.
     cin >> studentName;
 
 
@@ -135,14 +139,15 @@ void editStudentGrade(string names[], int grades[][MAX_GRADES], const int MAX_ST
     cin >> examNumber;
 
     if (examNumber > MAX_GRADES || examNumber < initializeColumn) {
-        cout << "Please enter a proper exam number." << endl;
+        cout << "Please enter a proper exam number (1-4)." << endl;
     }
 
-    cout << "Enter the new exam score: ";
+    cout << "Enter the new exam score as an integer ( Example - 96 ): ";
     cin >> newGrade;
 
     grades[namesIndex][examNumber - initializeColumn] = newGrade;
 
+    cout << "Please re-calculate averages and save a new final report after changing student grades.";
 
 }
 
@@ -160,7 +165,7 @@ bool readfromFile(ifstream& fileName, string names[]) // This function uses arra
         {
 
             if (!(fileName >> names[i])) {
-                success = false; // evaluate success to false
+                success = false; // evaluate success to false if the file does not read in properly
                 break;
             }
 
@@ -193,7 +198,7 @@ void calculateAverages(double averageStudentScores[], string letterGrades[], str
 
         averageStudentScores[i] = static_cast <double> (sum) / MAX_GRADES;
 
-        // Determine letter grade
+        // Determine letter grade using a multi decision if structure
         if (averageStudentScores[i] >= highA) {
             letterGrades[i] = "A";
         }
@@ -235,13 +240,15 @@ void generateIndividualReport(StudentGradeInfo student1) { // This function prin
 
     cout << fixed << setprecision(2);
 
+    // Outputs the different items using the members from the structure
+
     cout << "Name: " << student1.name << endl << endl;
     cout << "Exam 1: " << student1.examGrade1 << endl;
     cout << "Exam 2: " << student1.examGrade2 << endl;
     cout << "Exam 3: " << student1.examGrade3 << endl;
     cout << "Exam 4: " << student1.examGrade4 << endl;
     cout << endl;
-    cout << "Average Student Score: " << student1.averageGrade << endl << endl;;
+    cout << fixed << setprecision(2) << "Average Student Score: " << student1.averageGrade << "%" << endl << endl;;
     cout << "Final Grade: " << student1.letterGrade << endl;
 }
 
@@ -268,7 +275,7 @@ void generateFinalReport(double averageStudentScores[], string letterGrades[], s
 
     cout << setfill('.');
 
-    for (int i = 0; i < MAX_STUDENTS; i++)
+    for (int i = 0; i < MAX_STUDENTS; i++) // Uses double loop to print out the names, exam scores, and average scores neatly.
     {
         cout << left << setw(periodsOne) << names[i];
 
@@ -289,7 +296,7 @@ void generateFinalReport(double averageStudentScores[], string letterGrades[], s
 
 
 void saveToFile(double averageStudentScores[], string letterGrades[], string names[], int grades[][MAX_GRADES], const int MAX_GRADES, const int MAX_STUDENTS) // Utilizes the ofstream, and nested for loops to save the report to a file.
-// Written by: Arber Prendi
+// Written by: Arber Prendi w/ debugging by Alex
 {
     int periodsOne = 15;
     int periodsTwo = 10;
@@ -322,7 +329,7 @@ void saveToFile(double averageStudentScores[], string letterGrades[], string nam
             outFile << right << setw(periodsTwo) << grades[i][j];
         }
 
-        outFile << right << setw(periodsThree) << averageStudentScores[i];
+        outFile << right << setw(periodsThree) << averageStudentScores[i] << "%";
 
         outFile << endl;
     }
@@ -365,6 +372,7 @@ int main()
 
     userOption = 't';
 
+    // Outer Loop to be continually asked the question until user chooses to leave. 
     while (userOption != commandExit)
     {
 
