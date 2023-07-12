@@ -1,3 +1,9 @@
+// Student Grade Analyzer
+// Written by Alexander Arcari, Anthony Al-Khafaji, and Arber Prendi
+// The following program can be used to calculate grades for the end of the semester. First, the program shows a welcome message and the menu options, it then reads in a text file named Student Names.txt. After the introduction portion of the program, the program asks the user to
+// select a menu option available. I would recommend entering the grades, calculating the averages, showing a final report, and then fixing any mistakes using the edit student grades function. After making edits, showing individual reports, calculating averages, etc. The user is given the option
+// to save the final report to a file named Student Report.txt. The user can then exit their program with the report made. 
+
 #include <iostream>
 #include <string>
 #include <iomanip>
@@ -64,7 +70,6 @@ void enterGrades(int& i, string names[], int grades[][MAX_GRADES], const int MAX
     char userOption = 'y';
 
     int rowOfPeriods1 = 90;
-
 
     while (i < MAX_GRADES && userOption != 'n')
     {
@@ -136,7 +141,7 @@ void editStudentGrade(string names[], int grades[][MAX_GRADES], const int MAX_ST
     cout << "Enter the new exam score: ";
     cin >> newGrade;
 
-    grades[namesIndex][examNumber - 1] = newGrade;
+    grades[namesIndex][examNumber - initializeColumn] = newGrade;
 
 
 }
@@ -508,7 +513,7 @@ int main()
                 generateIndividualReport(student10);
             }
             else {
-                cout << "Hmm, try again." << endl;
+                cout << "Hmm, try again. If you forgot student names, please call the final report function to see the list of names in the class." << endl;
                 break;
             }
         }
