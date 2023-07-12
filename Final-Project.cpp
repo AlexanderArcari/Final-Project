@@ -9,9 +9,9 @@ const int MAX_STUDENTS = 10;
 const int MAX_GRADES = 4;
 
 struct StudentGradeInfo { // utilizes a structure to create multiple members for the total number of students.
-                          // Written by: Alexander Arcari
+    // Written by: Alexander Arcari
     string name = "John";
-    int examGrade1 =0;
+    int examGrade1 = 0;
     int examGrade2 = 0;
     int examGrade3 = 0;
     int examGrade4 = 0;
@@ -20,21 +20,21 @@ struct StudentGradeInfo { // utilizes a structure to create multiple members for
 };
 
 void welcome() // This function creates a title for our program to make it appear more professional
-               // Written by: Arber Prendi 
+// Written by: Arber Prendi 
 {
     int rowOfPeriods2 = 45;
     string welcome = " Classroom Grades Program ";
     int rowOfPeriods1 = 90 + welcome.length();
 
     cout << setfill('-');
-    cout << setw(rowOfPeriods1-1) << "" << endl;
-    cout << setw(rowOfPeriods2 + welcome.length()) << welcome << setw(rowOfPeriods2 -1) << "" << endl;
-    cout << setw(rowOfPeriods1-1) << "" << endl << endl;
+    cout << setw(rowOfPeriods1 - 1) << "" << endl;
+    cout << setw(rowOfPeriods2 + welcome.length()) << welcome << setw(rowOfPeriods2 - 1) << "" << endl;
+    cout << setw(rowOfPeriods1 - 1) << "" << endl << endl;
 }
 
 void menu() // This function displays the users options and can be called at any point in the program
-            // Written by: Alexander Arcari 
-            
+// Written by: Alexander Arcari 
+
 {
     char commandEnterGrades = 'g';
     char commandCalculateAverage = 'c';
@@ -58,46 +58,51 @@ void menu() // This function displays the users options and can be called at any
 }
 
 void enterGrades(int& i, string names[], int grades[][MAX_GRADES], const int MAX_STUDENTS, const int MAX_GRADES) // This function uses arrays, loops, and decision structures to allow user to input grades for exams 
-                                                                                                                 // It passes the i value in as reference so that the user can enter and leave the function at any point and keep the progress made
-                                                                                                                 // Written by Anthony Al-Khafaji  
+// It passes the i value in as reference so that the user can enter and leave the function at any point and keep the progress made
+// Written by Anthony Al-Khafaji  
 {
     char userOption = 'y';
-    
+
     int rowOfPeriods1 = 90;
-    
+
 
     while (i < MAX_GRADES && userOption != 'n')
     {
 
         cout << setfill('-');
-        cout << setw(rowOfPeriods1 -1) << "" << endl;
+        cout << setw(rowOfPeriods1 - 1) << "" << endl;
         cout << right << setw(44) << " Exam " << (i + 1) << " Grades " << setw(37) << " " << endl;
         cout << setw(rowOfPeriods1 - 1) << "";
         cout << endl << endl;
-        
+
         for (int j = 0; j < MAX_STUDENTS; j++)
         {
             cout << "Enter an integer grade for " << names[j] << ": ";
-            cin >> grades[i][j];
+            while (!(cin >> grades[j][i])) {
+                cout << "Error. Please try again with a valid integer value. (Example - 98): ";
+                cin.clear();
+                cin.ignore(100, '\n');
+            }
+
             cout << endl;
         }
 
         i++;
-        if (i != MAX_GRADES) 
+        if (i != MAX_GRADES)
         {
-            cout << "Would you like to enter the grades for exam " << (i+1) << "? ('y'= yes and 'n' = no): ";
+            cout << "Would you like to enter the grades for exam " << (i + 1) << "? ('y'= yes and 'n' = no): ";
             cin >> userOption;
             cout << endl;
         }
         else if (i == MAX_GRADES) {
             cout << "You've entered all of the exam grades for this semester. You can now calculate averages and final grades, edit entered grades, and generate reports!" << endl;
         }
-    
+
     }
-} 
+}
 
 void editStudentGrade(string names[], int grades[][MAX_GRADES], const int MAX_STUDENTS, const int MAX_GRADES) { //Function that allows the user to go back into program and change a grade for a student 
-                                                                                                                // Written by: Alexander Arcari 
+    // Written by: Alexander Arcari 
     string studentName;
     int examNumber;
     int newGrade;
@@ -136,7 +141,7 @@ void editStudentGrade(string names[], int grades[][MAX_GRADES], const int MAX_ST
 }
 
 bool readfromFile(ifstream& fileName, string names[]) // This function uses arrays, decision structures, and loops to read a file of names into an array. If the file does not populate the array, an error message is displayed. 
-                                                        // Written by: Arber Prendi w/ debugging from Alex 
+// Written by: Arber Prendi w/ debugging from Alex 
 {
     bool success;
     success = true;
@@ -169,7 +174,7 @@ void calculateAverages(int averageStudentScores[], string letterGrades[], string
     {
         int sum = 0;
         for (int j = 0; j < MAX_GRADES; j++) {
-            sum = sum + grades[j][i];
+            sum = sum + grades[i][j];
         }
 
         averageStudentScores[i] = sum / MAX_GRADES;
@@ -212,7 +217,7 @@ void calculateAverages(int averageStudentScores[], string letterGrades[], string
 }
 
 void generateIndividualReport(StudentGradeInfo student1) { // This function prints the individual grades, average grade, and letter grade to the screen for a student of the user's choosing. 
-                                                           // Written by: Alexander Arcari
+    // Written by: Alexander Arcari
 
     cout << "Name: " << student1.name << endl << endl;
     cout << "Exam 1: " << student1.examGrade1 << endl;
@@ -225,13 +230,13 @@ void generateIndividualReport(StudentGradeInfo student1) { // This function prin
 }
 
 void generateFinalReport(int averageStudentScores[], string letterGrades[], string names[], int grades[][MAX_GRADES], const int MAX_GRADES, const int MAX_STUDENTS) //This function utilizes a nested for loops and arrays to display a final report of grades for all students
-                                                                                                                                                                    // Written by: Anthony Al-Khafaji & Alexander Arcari 
+// Written by: Anthony Al-Khafaji & Alexander Arcari 
 {
     int periodsOne = 15;
     int periodsTwo = 10;
     int periodsThree = 8;
     int averageColumn = 1;
-    
+
     cout << setfill(' ');
     cout << left << setw(periodsOne) << "Name";
     cout << right << setw(periodsTwo) << "Exam 1";
@@ -248,25 +253,25 @@ void generateFinalReport(int averageStudentScores[], string letterGrades[], stri
     for (int i = 0; i < MAX_STUDENTS; i++)
     {
         cout << left << setw(periodsOne) << names[i];
-        
+
 
         for (int j = 0; j < MAX_GRADES; j++)
         {
-            cout << right << setw(periodsTwo) << grades[j][i];
-           
+            cout << right << setw(periodsTwo) << grades[i][j];
+
         }
 
         cout << right << setw(periodsThree) << averageStudentScores[i];
-        
+
 
         cout << endl;
-        
+
     }
 }
 
 
 void saveToFile(int averageStudentScores[], string letterGrades[], string names[], int grades[][MAX_GRADES], const int MAX_GRADES, const int MAX_STUDENTS) // Utilizes the ofstream, and nested for loops to save the report to a file.
-                                                                                                                                                            // Written by: Arber Prendi
+// Written by: Arber Prendi
 {
     int periodsOne = 15;
     int periodsTwo = 10;
@@ -345,30 +350,30 @@ int main()
     {
 
         cout << endl << "Please enter a menu option: ";
-        cin >> userOption; 
+        cin >> userOption;
         cout << endl;
 
         if (userOption == commandEnterGrades) //call GetCountofTeam function
         {
-             enterGrades(examNumber, names, grades, MAX_STUDENTS, MAX_GRADES);
-             
+            enterGrades(examNumber, names, grades, MAX_STUDENTS, MAX_GRADES);
+
         }
         else if (userOption == commandCalculateAverage) //call GetMostWinningTeam function
         {
             calculateAverages(averageStudentScores, letterGrades, names, grades, MAX_STUDENTS, MAX_GRADES);
         }
         else if (userOption == commandGenerateIndividualReport) { // Command Generate Individual Report calls a function that allows the user to enter a name of a student that they want an individual report for.
-                                                                  // Written by Alexander Arcari
+            // Written by Alexander Arcari
 
-            //Structure Variable Declaration
+//Structure Variable Declaration
             StudentGradeInfo student1, student2, student3, student4, student5, student6, student7, student8, student9, student10;
 
             //Student 1 // assign each student their name, their grades on each exam (found in the arrays) and their average grade, letter grade. 
             student1.name = names[0];
             student1.examGrade1 = grades[0][0];
-            student1.examGrade2 = grades[1][0];
-            student1.examGrade3 = grades[2][0];
-            student1.examGrade4 = grades[3][0];
+            student1.examGrade2 = grades[0][1];
+            student1.examGrade3 = grades[0][2];
+            student1.examGrade4 = grades[0][3];
             student1.averageGrade = averageStudentScores[0];
             student1.letterGrade = letterGrades[0];
 
@@ -407,7 +412,7 @@ int main()
             student5.examGrade4 = grades[3][4];
             student5.averageGrade = averageStudentScores[4];
             student5.letterGrade = letterGrades[4];
-            
+
             //Student 6
             student6.name = names[5];
             student6.examGrade1 = grades[0][5];
@@ -493,7 +498,7 @@ int main()
                 break;
             }
         }
-        else if (userOption == commandEditStudentGrades){
+        else if (userOption == commandEditStudentGrades) {
             editStudentGrade(names, grades, MAX_STUDENTS, MAX_GRADES);
         }
         else if (userOption == commandGenerateFinalReport) // call Generate Final Report function 
