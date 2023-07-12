@@ -78,7 +78,8 @@ void enterGrades(int& i, string names[], int grades[][MAX_GRADES], const int MAX
         for (int j = 0; j < MAX_STUDENTS; j++)
         {
             cout << "Enter an integer grade for " << names[j] << ": ";
-            while (!(cin >> grades[j][i])) {
+            while (!(cin >> grades[j][i]))
+            {
                 cout << "Error. Please try again with a valid integer value. (Example - 98): ";
                 cin.clear();
                 cin.ignore(100, '\n');
@@ -300,7 +301,7 @@ void saveToFile(int averageStudentScores[], string letterGrades[], string names[
 
         for (int j = 0; j < MAX_GRADES; j++)
         {
-            outFile << right << setw(periodsTwo) << grades[j][i];
+            outFile << right << setw(periodsTwo) << grades[i][j];
         }
 
         outFile << right << setw(periodsThree) << averageStudentScores[i];
