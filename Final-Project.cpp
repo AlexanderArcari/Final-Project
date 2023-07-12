@@ -274,7 +274,7 @@ void generateFinalReport(double averageStudentScores[], string letterGrades[], s
 
         }
 
-        cout << right << setw(periodsThree) << averageStudentScores[i];
+        cout << right << setw(periodsThree) << averageStudentScores[i] << "%";
 
 
         cout << endl;
