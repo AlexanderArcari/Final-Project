@@ -5,7 +5,8 @@
 
 using namespace std;
 
-const int MAX_STUDENTS = 10;
+const int MAX_STUDENTS = 10
+;
 const int MAX_GRADES = 4;
 
 struct StudentGradeInfo { // utilizes a structure to create multiple members for the total number of students.
@@ -136,7 +137,7 @@ void editStudentGrade(string names[], int grades[][MAX_GRADES], const int MAX_ST
     cout << "Enter the new exam score: ";
     cin >> newGrade;
 
-    grades[examNumber - initializeColumn][namesIndex] = newGrade;
+    grades[namesIndex][examNumber - 1] = newGrade;
 
 
 }
@@ -380,82 +381,82 @@ int main()
 
             //Student 2
             student2.name = names[1];
-            student2.examGrade1 = grades[0][1];
+            student2.examGrade1 = grades[1][0];
             student2.examGrade2 = grades[1][1];
-            student2.examGrade3 = grades[2][1];
-            student2.examGrade4 = grades[3][1];
+            student2.examGrade3 = grades[1][2];
+            student2.examGrade4 = grades[1][3];
             student2.averageGrade = averageStudentScores[1];
             student2.letterGrade = letterGrades[1];
 
             //Student 3
             student3.name = names[2];
-            student3.examGrade1 = grades[0][2];
-            student3.examGrade2 = grades[1][2];
+            student3.examGrade1 = grades[2][0];
+            student3.examGrade2 = grades[2][1];
             student3.examGrade3 = grades[2][2];
-            student3.examGrade4 = grades[3][2];
+            student3.examGrade4 = grades[2][3];
             student3.averageGrade = averageStudentScores[2];
             student3.letterGrade = letterGrades[2];
 
             //Student 4
             student4.name = names[3];
-            student4.examGrade1 = grades[0][3];
-            student4.examGrade2 = grades[1][3];
-            student4.examGrade3 = grades[2][3];
+            student4.examGrade1 = grades[3][0];
+            student4.examGrade2 = grades[3][1];
+            student4.examGrade3 = grades[3][2];
             student4.examGrade4 = grades[3][3];
             student4.averageGrade = averageStudentScores[3];
             student4.letterGrade = letterGrades[3];
 
             //Student 5
             student5.name = names[4];
-            student5.examGrade1 = grades[0][4];
-            student5.examGrade2 = grades[1][4];
-            student5.examGrade3 = grades[2][4];
-            student5.examGrade4 = grades[3][4];
+            student5.examGrade1 = grades[4][0];
+            student5.examGrade2 = grades[4][1];
+            student5.examGrade3 = grades[4][2];
+            student5.examGrade4 = grades[4][3];
             student5.averageGrade = averageStudentScores[4];
             student5.letterGrade = letterGrades[4];
 
             //Student 6
             student6.name = names[5];
-            student6.examGrade1 = grades[0][5];
-            student6.examGrade2 = grades[1][5];
-            student6.examGrade3 = grades[2][5];
-            student6.examGrade4 = grades[3][5];
+            student6.examGrade1 = grades[5][0];
+            student6.examGrade2 = grades[5][1];
+            student6.examGrade3 = grades[5][2];
+            student6.examGrade4 = grades[5][3];
             student6.averageGrade = averageStudentScores[5];
             student6.letterGrade = letterGrades[5];
 
             //Student 7
             student7.name = names[6];
-            student7.examGrade1 = grades[0][6];
-            student7.examGrade2 = grades[1][6];
-            student7.examGrade3 = grades[2][6];
-            student7.examGrade4 = grades[3][6];
+            student7.examGrade1 = grades[6][0];
+            student7.examGrade2 = grades[6][1];
+            student7.examGrade3 = grades[6][2];
+            student7.examGrade4 = grades[6][3];
             student7.averageGrade = averageStudentScores[6];
             student7.letterGrade = letterGrades[6];
 
             //Student 8
             student8.name = names[7];
-            student8.examGrade1 = grades[0][7];
-            student8.examGrade2 = grades[1][7];
-            student8.examGrade3 = grades[2][7];
-            student8.examGrade4 = grades[3][7];
+            student8.examGrade1 = grades[7][0];
+            student8.examGrade2 = grades[7][1];
+            student8.examGrade3 = grades[7][2];
+            student8.examGrade4 = grades[7][3];
             student8.averageGrade = averageStudentScores[7];
             student8.letterGrade = letterGrades[7];
 
             //Student 9
             student9.name = names[8];
-            student9.examGrade1 = grades[0][8];
-            student9.examGrade2 = grades[1][8];
-            student9.examGrade3 = grades[2][8];
-            student9.examGrade4 = grades[3][8];
+            student9.examGrade1 = grades[8][0];
+            student9.examGrade2 = grades[8][1];
+            student9.examGrade3 = grades[8][2];
+            student9.examGrade4 = grades[8][3];
             student9.averageGrade = averageStudentScores[8];
             student9.letterGrade = letterGrades[8];
 
             //Student 10
             student10.name = names[9];
-            student10.examGrade1 = grades[0][9];
-            student10.examGrade2 = grades[1][9];
-            student10.examGrade3 = grades[2][9];
-            student10.examGrade4 = grades[3][9];
+            student10.examGrade1 = grades[9][0];
+            student10.examGrade2 = grades[9][2];
+            student10.examGrade3 = grades[9][3];
+            student10.examGrade4 = grades[9][4];
             student10.averageGrade = averageStudentScores[9];
             student10.letterGrade = letterGrades[9];
 
